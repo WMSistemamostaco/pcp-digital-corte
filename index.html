@@ -10,7 +10,8 @@
       --primary: #7c3aed;
       --primary-lt: #ede9fe;
       --success: #16a34a;
-      --success-lt: #dcfce7;
+      --danger: #dc2626;
+      --warning: #d97706;
       --muted: #6b7280;
       --border: #e5e7eb;
       --bg: #f8f9fb;
@@ -18,473 +19,504 @@
       --text: #111827;
       --radius: 14px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    /* ── TOP NAV ── */
+    /* ── NAV ── */
     .top-nav {
-      background: white;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: white; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
       border-bottom: 1px solid var(--border);
     }
     .top-nav-left { display: flex; align-items: center; gap: 18px; }
     .nav-icon { color: var(--muted); cursor: pointer; display: flex; align-items: center; }
     .nav-icon svg { width: 22px; height: 22px; }
 
-    /* ── CONTAINER ── */
+    /* ── PAGE ── */
     .page { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 
-    /* ── CARD PERÍODO ── */
+    /* ── PERÍODO ── */
     .periodo-card {
-      background: white;
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      margin-bottom: 20px;
+      background: white; border-radius: var(--radius);
+      padding: 20px 24px; margin-bottom: 20px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.07);
     }
     .periodo-titulo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 1rem; font-weight: 700; margin-bottom: 18px;
     }
     .periodo-titulo::before {
-      content: '';
-      display: block;
-      width: 4px;
-      height: 20px;
-      background: var(--primary);
-      border-radius: 2px;
+      content: ''; display: block; width: 4px; height: 20px;
+      background: var(--primary); border-radius: 2px;
     }
-    .periodo-form {
-      display: flex;
-      gap: 14px;
-      align-items: flex-end;
-      flex-wrap: wrap;
-    }
+    .periodo-form { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
     .form-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 120px; }
     .form-group label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
     .form-group input {
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 0.95rem;
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      outline: none;
-      transition: border-color .2s;
-      background: white;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 12px 14px; font-size: 0.95rem; font-family: 'Inter', sans-serif;
+      color: var(--text); outline: none; transition: border-color .2s; background: white;
     }
     .form-group input:focus { border-color: var(--primary); }
-
     .btn-recarregar {
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 22px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      transition: background .15s;
-      flex-shrink: 0;
+      background: var(--primary); color: white; border: none; border-radius: 10px;
+      padding: 12px 22px; font-size: 0.9rem; font-weight: 600;
+      font-family: 'Inter', sans-serif; cursor: pointer;
+      display: flex; align-items: center; gap: 8px; white-space: nowrap;
+      transition: background .15s; flex-shrink: 0;
     }
     .btn-recarregar:hover { background: #6d28d9; }
     .btn-recarregar svg { width: 16px; height: 16px; }
 
-    /* ── CARD SEMANA ── */
+    /* ── SEMANA CARD ── */
     .semana-card {
-      background: white;
-      border-radius: var(--radius);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-      overflow: hidden;
-      margin-bottom: 20px;
+      background: white; border-radius: var(--radius);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07); overflow: hidden; margin-bottom: 20px;
     }
-
     .semana-header {
-      background: #f5f3ff;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      border-bottom: 1px solid #ede9fe;
+      background: #f5f3ff; padding: 16px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #ede9fe;
     }
     .semana-header-left { display: flex; align-items: center; gap: 12px; }
-    .semana-titulo { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .semana-titulo { font-size: 1.5rem; font-weight: 700; }
     .badge-comandos {
-      background: var(--primary-lt);
-      color: var(--primary);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 20px;
+      background: var(--primary-lt); color: var(--primary);
+      font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 20px;
     }
     .semana-stats { display: flex; gap: 20px; flex-wrap: wrap; }
-    .stat-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-    }
+    .stat-item { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; }
     .stat-item svg { width: 16px; height: 16px; color: var(--muted); }
-
-    /* ── BUSCA ── */
-    .busca-wrap {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
-    .busca-wrap svg {
-      position: absolute;
-      left: 28px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      width: 16px;
-      height: 16px;
-    }
+    .busca-wrap { padding: 12px 16px; border-bottom: 1px solid var(--border); position: relative; }
+    .busca-wrap svg { position: absolute; left: 28px; top: 50%; transform: translateY(-50%); color: var(--muted); width: 16px; height: 16px; }
     .busca-input {
-      width: 100%;
-      padding: 9px 12px 9px 36px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      outline: none;
+      width: 100%; padding: 9px 12px 9px 36px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: 0.85rem; font-family: 'Inter', sans-serif; background: var(--bg); outline: none;
     }
     .busca-input:focus { border-color: var(--primary); }
-
-    /* ── TABELA ── */
     .table-wrap { overflow-x: auto; }
-
     table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
     thead tr { border-bottom: 2px solid var(--border); }
-    thead th {
-      padding: 12px 16px;
-      text-align: left;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-    }
+    thead th { padding: 12px 16px; text-align: left; font-weight: 600; white-space: nowrap; }
     thead th.num { text-align: right; }
-
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background .1s;
-      cursor: pointer;
-    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; cursor: pointer; }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: #fafafa; }
-
     tbody td { padding: 14px 16px; vertical-align: middle; }
     tbody td.num { text-align: right; }
-
     .td-comando { font-weight: 700; font-size: 0.85rem; white-space: nowrap; }
     .td-cor  { color: var(--muted); }
     .td-desc { color: var(--muted); }
-
     .td-baixado-ok  { color: var(--success); font-weight: 700; }
-    .td-baixado-med { color: #d97706; font-weight: 700; }
-    .td-baixado-low { color: #dc2626; font-weight: 700; }
-
-    .td-saldo-zero { color: var(--success); font-weight: 700; }
-    .td-saldo-pend { color: #d97706; font-weight: 700; }
-
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 400;
-      align-items: flex-end;
-      justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: white;
-      border-radius: 16px 16px 0 0;
-      width: 100%;
-      max-width: 640px;
-      max-height: 92vh;
-      overflow-y: auto;
-      animation: slideUp .25s ease;
-    }
-    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-    .modal-header {
-      background: var(--primary);
-      color: white;
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      border-radius: 16px 16px 0 0;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-    }
-    .modal-back {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      color: white;
-      border-radius: 8px;
-      padding: 7px 14px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 0.82rem;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .modal-header-info .cmd  { font-size: 0.95rem; font-weight: 700; }
-    .modal-header-info .prod { font-size: 0.75rem; opacity: .8; margin-top: 2px; }
-
-    .modal-body { padding: 18px 20px 36px; }
-
-    .modal-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-    .modal-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 12px; }
-
-    .info-tile {
-      background: var(--bg);
-      border-radius: 10px;
-      padding: 12px 14px;
-    }
-    .info-tile .lbl { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
-    .info-tile .val { font-size: 0.92rem; font-weight: 700; margin-top: 3px; }
-
-    .ef-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: var(--bg);
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 12px;
-    }
-    .ef-circle {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; font-weight: 700;
-      flex-shrink: 0;
-    }
-    .ef-ok  { background: #dcfce7; color: #16a34a; }
-    .ef-med { background: #fef3c7; color: #d97706; }
-    .ef-low { background: #fee2e2; color: #dc2626; }
-    .ef-row-info .ef-label  { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
-    .ef-row-info .ef-status { font-size: 0.95rem; font-weight: 700; margin-top: 3px; }
-    .ef-row-info .ef-sub    { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-
-    .prog-box { background: var(--bg); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
-    .prog-top { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 8px; }
-    .prog-bar-bg { background: var(--border); border-radius: 6px; height: 9px; overflow: hidden; }
-    .prog-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--primary), #a78bfa); }
-    .prog-sub { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
-
-    .grade-box { background: var(--bg); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
-    .grade-box h3 { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 10px; }
-    .grade-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
-    @media(min-width:400px){ .grade-grid { grid-template-columns: repeat(8,1fr); } }
-    .grade-item { background: white; border-radius: 8px; padding: 8px 4px; text-align: center; }
-    .grade-item .g-tam { font-size: 0.65rem; color: var(--muted); font-weight: 600; }
-    .grade-item .g-qtd { font-size: 1rem; font-weight: 700; margin-top: 2px; }
-    .grade-item.zero { opacity: .35; }
-
-    .obs-box { background: var(--bg); border-radius: 10px; padding: 14px; }
-    .obs-box h3 { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 10px; }
-    .obs-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
-    .obs-item:last-child { border-bottom: none; }
-    .obs-data { color: var(--muted); font-size: 0.73rem; white-space: nowrap; }
-
+    .td-baixado-med { color: var(--warning); font-weight: 700; }
+    .td-baixado-low { color: var(--danger);  font-weight: 700; }
+    .td-saldo-zero  { color: var(--success); font-weight: 700; }
+    .td-saldo-pend  { color: var(--warning); font-weight: 700; }
     .empty { text-align: center; padding: 40px 20px; color: var(--muted); }
     .empty p { font-weight: 600; margin-top: 10px; }
 
-    @media (max-width: 600px) {
-      .semana-stats { gap: 12px; }
-      .stat-item { font-size: 0.78rem; }
+    /* ══════════════════════════════════
+       FICHA TÉCNICA (tela de detalhe)
+    ══════════════════════════════════ */
+    #tela-ficha {
+      display: none;
+      position: fixed; inset: 0;
+      background: var(--bg);
+      z-index: 500;
+      overflow-y: auto;
+    }
+
+    /* Header da ficha */
+    .ficha-nav {
+      background: var(--primary); color: white;
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 14px;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .ficha-nav-back {
+      background: rgba(255,255,255,0.2); border: none; color: white;
+      border-radius: 8px; padding: 7px 14px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.82rem;
+      cursor: pointer; flex-shrink: 0;
+    }
+    .ficha-nav-title .cmd  { font-size: 1rem; font-weight: 700; }
+    .ficha-nav-title .prod { font-size: 0.74rem; opacity: .8; margin-top: 2px; }
+
+    .ficha-body { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+
+    /* Cabeçalho laranja/info igual ao Excel */
+    .ficha-header-box {
+      background: white; border-radius: var(--radius);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      overflow: hidden; margin-bottom: 16px;
+    }
+    .ficha-header-top {
+      background: #ea580c; color: white;
+      padding: 10px 16px;
+      display: flex; flex-wrap: wrap; gap: 8px 24px;
+      font-size: 0.82rem; font-weight: 700;
+    }
+    .ficha-header-top span { opacity: .85; font-weight: 400; }
+    .ficha-header-top strong { font-weight: 700; }
+
+    .ficha-header-info {
+      padding: 12px 16px;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+    }
+    @media(min-width:500px){ .ficha-header-info { grid-template-columns: repeat(4, 1fr); } }
+    .fhi-item .fhi-lbl { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .fhi-item .fhi-val { font-size: 0.9rem; font-weight: 700; margin-top: 2px; }
+
+    /* Tabela de riscos */
+    .ficha-card {
+      background: white; border-radius: var(--radius);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      overflow: hidden; margin-bottom: 16px;
+    }
+    .ficha-card-title {
+      background: var(--primary-lt); color: var(--primary);
+      padding: 10px 16px; font-size: 0.78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px;
+      border-bottom: 1px solid #ddd6fe;
+    }
+
+    .riscos-wrap { overflow-x: auto; }
+    .riscos-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 700px; }
+    .riscos-table th, .riscos-table td {
+      border: 1px solid var(--border);
+      padding: 8px 6px; text-align: center;
+    }
+    .riscos-table thead th {
+      background: #f5f3ff; font-weight: 700; font-size: 0.75rem; color: var(--text);
+    }
+    .riscos-table thead th.tam-col { color: var(--danger); font-weight: 800; }
+    .riscos-table tbody .row-label {
+      background: #f9fafb; font-weight: 700; font-size: 0.75rem;
+      text-align: left; padding-left: 10px; white-space: nowrap;
+    }
+    .riscos-table tbody .row-grade { background: #f0fdf4; }
+    .riscos-table tbody .row-tt    { background: #fefce8; font-weight: 700; }
+    .riscos-table .col-total { background: #ede9fe; font-weight: 800; color: var(--primary); }
+    .riscos-table .val-blue  { color: #2563eb; font-weight: 700; }
+    .riscos-table .val-empty { color: #d1d5db; }
+
+    /* Totais à direita */
+    .riscos-totais-wrap { overflow-x: auto; }
+    .riscos-totais {
+      width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 360px;
+    }
+    .riscos-totais th, .riscos-totais td {
+      border: 1px solid var(--border); padding: 8px 10px; text-align: center;
+    }
+    .riscos-totais thead th { background: #f5f3ff; font-weight: 700; font-size: 0.75rem; }
+    .riscos-totais .row-label { background: #f9fafb; font-weight: 700; font-size: 0.75rem; text-align: left; padding-left: 10px; }
+    .riscos-totais .ef-ok  { color: var(--success); font-weight: 800; }
+    .riscos-totais .ef-med { color: var(--warning); font-weight: 800; }
+    .riscos-totais .ef-low { color: var(--danger);  font-weight: 800; }
+    .riscos-totais .total-row { background: #fef3c7; font-weight: 700; }
+
+    /* Resumo corte */
+    .resumo-corte-grid {
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 16px;
+    }
+    @media(min-width:500px){ .resumo-corte-grid { grid-template-columns: repeat(4,1fr); } }
+    .rc-item {
+      background: white; border-radius: 10px;
+      padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); text-align: center;
+    }
+    .rc-item .rc-lbl { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .rc-item .rc-val { font-size: 1.2rem; font-weight: 800; margin-top: 4px; color: var(--primary); }
+
+    /* Responsáveis */
+    .resp-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .resp-table th, .resp-table td {
+      border: 1px solid var(--border); padding: 10px 12px;
+    }
+    .resp-table thead th { background: #f5f3ff; font-weight: 700; text-align: center; }
+    .resp-table tbody .resp-label { background: #f9fafb; font-weight: 700; width: 110px; }
+    .resp-table tbody td { color: var(--muted); font-size: 0.78rem; }
+    .local-tecido {
+      background: white; border-radius: 10px;
+      padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      margin-top: 14px;
+    }
+    .local-tecido .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 6px; }
+    .local-tecido .val { font-size: 0.88rem; color: var(--muted); font-style: italic; }
+
+    @media(max-width:600px){
       thead th, tbody td { padding: 10px 10px; font-size: 0.82rem; }
       .td-produto { max-width: 130px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .semana-stats { gap: 12px; }
+      .stat-item { font-size: 0.78rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<div class="top-nav">
-  <div class="top-nav-left">
-    <span class="nav-icon">
-      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-        <path d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/>
-        <path d="M9 22V12h6v10"/>
-      </svg>
-    </span>
-    <span class="nav-icon">
-      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-        <path d="M15 19l-7-7 7-7"/>
-      </svg>
-    </span>
-  </div>
-  <span class="nav-icon">
-    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-      <circle cx="12" cy="8" r="4"/>
-      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-    </svg>
-  </span>
-</div>
-
-<!-- PAGE -->
-<div class="page">
-
-  <!-- PERÍODO -->
-  <div class="periodo-card">
-    <div class="periodo-titulo">Período</div>
-    <div class="periodo-form">
-      <div class="form-group">
-        <label>Semana Inicial</label>
-        <input type="number" id="sem-ini" value="12" min="1" max="52" />
-      </div>
-      <div class="form-group">
-        <label>Semana Final</label>
-        <input type="number" id="sem-fin" value="28" min="1" max="52" />
-      </div>
-      <button class="btn-recarregar" onclick="recarregar()">
-        <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-          <path d="M1 4v6h6"/><path d="M23 20v-6h-6"/>
-          <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
+<!-- ════════════ TELA LISTA ════════════ -->
+<div id="tela-lista">
+  <div class="top-nav">
+    <div class="top-nav-left">
+      <span class="nav-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/>
+          <path d="M9 22V12h6v10"/>
         </svg>
-        Recarregar
-      </button>
+      </span>
+      <span class="nav-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M15 19l-7-7 7-7"/>
+        </svg>
+      </span>
+    </div>
+    <span class="nav-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+    </span>
+  </div>
+
+  <div class="page">
+    <div class="periodo-card">
+      <div class="periodo-titulo">Período</div>
+      <div class="periodo-form">
+        <div class="form-group">
+          <label>Semana Inicial</label>
+          <input type="number" id="sem-ini" value="12" min="1" max="52" />
+        </div>
+        <div class="form-group">
+          <label>Semana Final</label>
+          <input type="number" id="sem-fin" value="28" min="1" max="52" />
+        </div>
+        <button class="btn-recarregar" onclick="recarregar()">
+          <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path d="M1 4v6h6"/><path d="M23 20v-6h-6"/>
+            <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
+          </svg>
+          Recarregar
+        </button>
+      </div>
+    </div>
+    <div id="semana-card" class="semana-card"></div>
+  </div>
+</div>
+
+<!-- ════════════ TELA FICHA TÉCNICA ════════════ -->
+<div id="tela-ficha">
+  <div class="ficha-nav">
+    <button class="ficha-nav-back" onclick="fecharFicha()">← Voltar</button>
+    <div class="ficha-nav-title">
+      <div class="cmd" id="f-cmd"></div>
+      <div class="prod" id="f-prod"></div>
     </div>
   </div>
 
-  <!-- SEMANA CARD -->
-  <div id="semana-card" class="semana-card"></div>
+  <div class="ficha-body">
 
-</div>
-
-<!-- MODAL DETALHE -->
-<div class="modal-overlay" id="modal-overlay" onclick="fecharModalOverlay(event)">
-  <div class="modal" id="modal">
-    <div class="modal-header">
-      <button class="modal-back" onclick="fecharModal()">← Voltar</button>
-      <div class="modal-header-info">
-        <div class="cmd" id="m-cmd"></div>
-        <div class="prod" id="m-prod"></div>
+    <!-- CABEÇALHO LARANJA -->
+    <div class="ficha-header-box">
+      <div class="ficha-header-top">
+        <div><span>FACÇÃO: </span><strong id="f-faccao"></strong></div>
+        <div><span>REM: </span><strong id="f-rem"></strong></div>
+        <div><span>DATA: </span><strong id="f-data"></strong></div>
+        <div><span>LAVANDERIA: </span><strong id="f-lavanderia"></strong></div>
+      </div>
+      <div class="ficha-header-info">
+        <div class="fhi-item"><div class="fhi-lbl">REF.</div><div class="fhi-val" id="f-ref"></div></div>
+        <div class="fhi-item"><div class="fhi-lbl">OPD</div><div class="fhi-val" id="f-opd"></div></div>
+        <div class="fhi-item"><div class="fhi-lbl">Modelo</div><div class="fhi-val" id="f-modelo"></div></div>
+        <div class="fhi-item"><div class="fhi-lbl">Tecido</div><div class="fhi-val" id="f-tecido"></div></div>
+        <div class="fhi-item"><div class="fhi-lbl">Cor</div><div class="fhi-val" id="f-cor"></div></div>
+        <div class="fhi-item"><div class="fhi-lbl">Largura</div><div class="fhi-val" id="f-largura"></div></div>
       </div>
     </div>
-    <div class="modal-body">
 
-      <div class="ef-row">
-        <div class="ef-circle" id="m-ef-circle"></div>
-        <div class="ef-row-info">
-          <div class="ef-label">Eficiência</div>
-          <div class="ef-status" id="m-ef-status"></div>
-          <div class="ef-sub" id="m-ef-sub"></div>
-        </div>
-      </div>
+    <!-- RESUMO RÁPIDO -->
+    <div class="resumo-corte-grid" id="f-resumo"></div>
 
-      <div class="prog-box">
-        <div class="prog-top">
-          <span>Progresso de Baixa</span>
-          <span id="m-prog-pct"></span>
-        </div>
-        <div class="prog-bar-bg">
-          <div class="prog-bar-fill" id="m-prog-bar" style="width:0%"></div>
-        </div>
-        <div class="prog-sub">
-          <span id="m-prog-left"></span>
-          <span id="m-prog-right"></span>
-        </div>
+    <!-- TABELA DE RISCOS (grade) -->
+    <div class="ficha-card">
+      <div class="ficha-card-title">Grade de Riscos — Tamanhos</div>
+      <div class="riscos-wrap">
+        <table class="riscos-table" id="f-riscos-table"></table>
       </div>
-
-      <div class="modal-grid-2">
-        <div class="info-tile"><div class="lbl">Tecido</div><div class="val" id="m-tecido"></div></div>
-        <div class="info-tile"><div class="lbl">Cor</div><div class="val" id="m-cor"></div></div>
-        <div class="info-tile"><div class="lbl">Descrição</div><div class="val" id="m-desc"></div></div>
-        <div class="info-tile"><div class="lbl">Linha</div><div class="val" id="m-linha"></div></div>
-      </div>
-      <div class="modal-grid-3">
-        <div class="info-tile"><div class="lbl">Quantidade</div><div class="val" id="m-qtd"></div></div>
-        <div class="info-tile"><div class="lbl">Baixado</div><div class="val" id="m-baixado"></div></div>
-        <div class="info-tile"><div class="lbl">Saldo</div><div class="val" id="m-saldo"></div></div>
-      </div>
-
-      <div class="grade-box">
-        <h3>Grade de Tamanhos</h3>
-        <div class="grade-grid" id="m-grade"></div>
-      </div>
-
-      <div class="obs-box">
-        <h3>Histórico / Observações</h3>
-        <div id="m-obs"></div>
-      </div>
-
     </div>
+
+    <!-- TOTAIS POR RISCO -->
+    <div class="ficha-card">
+      <div class="ficha-card-title">Totais por Risco</div>
+      <div class="riscos-totais-wrap">
+        <table class="riscos-totais" id="f-totais-table"></table>
+      </div>
+    </div>
+
+    <!-- RESPONSÁVEIS -->
+    <div class="ficha-card">
+      <div class="ficha-card-title">Responsáveis</div>
+      <table class="resp-table">
+        <thead>
+          <tr>
+            <th>Etapa</th>
+            <th>Responsável</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        <tbody id="f-resp-body"></tbody>
+      </table>
+      <div class="local-tecido">
+        <div class="lbl">Local do Tecido</div>
+        <div class="val" id="f-local-tecido">—</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <script>
 // ══════════════════════════════════════════════
-//  DADOS — substituir futuramente por:
-//  const res = await fetch(`/api/erp/pcp?semIni=${ini}&semFin=${fin}`);
-//  const dadosPCP = await res.json();
+//  DADOS LISTA
 // ══════════════════════════════════════════════
 const dadosPCP = [
-  { semana:12, comando:"OPD002612.1", produto:"7696 - CALÇA FEM BOOTCUT PETIT",      cor:"JEANS",         desc:"REM 12", linha:"FEMININO",  tecido:"JULIA PLUS",     qtd:91,  baixado:91,  ef:86, grade:{34:5,36:7,38:12,40:12,42:24,44:12,46:12,48:7},   obs:[{data:"22/03",txt:"Baixa iniciada — 45 pçs confirmadas"},{data:"25/03",txt:"Finalização prevista para hoje"}] },
-  { semana:12, comando:"OPD002598.1", produto:"6074 - CALÇA MAS RETA COMFORT",       cor:"UNICA",         desc:"REM 12", linha:"MASCULINO", tecido:"DENIM STRETCH",  qtd:100, baixado:100, ef:81, grade:{34:0,36:10,38:20,40:20,42:30,44:10,46:10,48:0},  obs:[{data:"20/03",txt:"OP liberada pelo PCP"},{data:"23/03",txt:"Eficiência abaixo da meta — monitorar"}] },
-  { semana:12, comando:"OPD002598.2", produto:"96074 - CALÇA MAS RETA COMFORT",      cor:"UNICA",         desc:"REM 12", linha:"MASCULINO", tecido:"DENIM STRETCH",  qtd:30,  baixado:30,  ef:90, grade:{34:0,36:4,38:8,40:8,42:6,44:4,46:0,48:0},       obs:[{data:"21/03",txt:"Concluída sem intercorrências"}] },
-  { semana:12, comando:"OPD002613.1", produto:"152 - CALÇA FEM SK CROPPED BV COLOR", cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"SARJA ELASTANO", qtd:145, baixado:145, ef:93, grade:{34:10,36:20,38:30,40:30,42:30,44:15,46:10,48:0},obs:[{data:"24/03",txt:"Produção concluída"}] },
-  { semana:12, comando:"OPD002614.2", produto:"9225 - BERM FEM CICLISTA COLOR",      cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"MALHA CANELADA", qtd:42,  baixado:42,  ef:88, grade:{34:4,36:6,38:10,40:10,42:8,44:4,46:0,48:0},     obs:[{data:"23/03",txt:"Finalizado"}] },
-  { semana:12, comando:"OPD002614.1", produto:"225 - BERM FEM CICLISTA COLOR",       cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"MALHA CANELADA", qtd:208, baixado:208, ef:91, grade:{34:20,36:30,38:40,40:40,42:40,44:20,46:18,48:0},obs:[{data:"22/03",txt:"Alta eficiência registrada"}] },
-  { semana:12, comando:"OPD002631.1", produto:"8102 - BERMUDA FEM CARGO",            cor:"VERDE MILITAR", desc:"REM 12", linha:"FEMININO",  tecido:"SARJA ELASTANO", qtd:150, baixado:90,  ef:92, grade:{34:10,36:20,38:30,40:30,42:30,44:20,46:10,48:0},obs:[{data:"24/03",txt:"Produção em andamento, 60% concluído"}] },
-  { semana:12, comando:"OPD002644.2", produto:"9010 - JAQUETA MAS JEANS",            cor:"ÍNDIGO",        desc:"REM 12", linha:"MASCULINO", tecido:"DENIM RÍGIDO",   qtd:60,  baixado:15,  ef:74, grade:{34:0,36:0,38:10,40:15,42:20,44:10,46:5,48:0},   obs:[{data:"25/03",txt:"Atenção: eficiência crítica. Verificar setup."}] },
+  { semana:12, comando:"OPD002612.1", produto:"7696 - CALÇA FEM BOOTCUT PETIT",         cor:"JEANS",         desc:"REM 12", linha:"FEMININO",  tecido:"JULIA PLUS",     qtd:91,  baixado:91,  ef:86 },
+  { semana:12, comando:"OPD002598.1", produto:"6074 - CALÇA MAS RETA COMFORT",          cor:"UNICA",         desc:"REM 12", linha:"MASCULINO", tecido:"DENIM STRETCH",  qtd:100, baixado:100, ef:81 },
+  { semana:12, comando:"OPD002598.2", produto:"96074 - CALÇA MAS RETA COMFORT",         cor:"UNICA",         desc:"REM 12", linha:"MASCULINO", tecido:"DENIM STRETCH",  qtd:30,  baixado:30,  ef:90 },
+  { semana:12, comando:"OPD002613.1", produto:"152 - CALÇA FEM SK CROPPED BV COLOR",    cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"SARJA ELASTANO", qtd:145, baixado:145, ef:93 },
+  { semana:12, comando:"OPD002614.2", produto:"9225 - BERM FEM CICLISTA COLOR",         cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"MALHA CANELADA", qtd:42,  baixado:42,  ef:88 },
+  { semana:12, comando:"OPD002614.1", produto:"225 - BERM FEM CICLISTA COLOR",          cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"MALHA CANELADA", qtd:208, baixado:208, ef:91 },
+  { semana:12, comando:"OPD002620.1", produto:"CALÇA MAS SLIM",                         cor:"UNICA",         desc:"REM 12", linha:"MASCULINO", tecido:"SANDY BABY BLUE PLUS", qtd:160, baixado:160, ef:84 },
+  { semana:12, comando:"OPD002631.1", produto:"8102 - BERMUDA FEM CARGO",               cor:"VERDE MILITAR", desc:"REM 12", linha:"FEMININO",  tecido:"SARJA ELASTANO", qtd:150, baixado:90,  ef:92 },
+  { semana:12, comando:"OPD002644.2", produto:"9010 - JAQUETA MAS JEANS",               cor:"ÍNDIGO",        desc:"REM 12", linha:"MASCULINO", tecido:"DENIM RÍGIDO",   qtd:60,  baixado:15,  ef:74 },
 ];
 
-let busca = '';
+// ══════════════════════════════════════════════
+//  FICHAS TÉCNICAS
+//  Estrutura: cada OP tem riscos R1..R10 com
+//  grade por tamanho, dobras, enfesto, metros, ef
+// ══════════════════════════════════════════════
+const fichas = {
+  "OPD002620.1": {
+    faccao:    "VIA GRÁFIT",
+    rem:       "12",
+    data:      "24/03/2026",
+    hora:      "15:39:32",
+    lavanderia:"LAVDENIM",
+    ref:       "6239.6",
+    modelo:    "CALÇA MAS SLIM",
+    tecido:    "SANDY BABY BLUE PLUS",
+    cor:       "UNICA",
+    largura:   "1,59",
+    tamanhos:  [34,36,38,40,42,44,46,48],
+    grade:     { 36:10, 38:20, 40:40, 42:30, 44:20, 46:10 },  // GRADE base
+    riscos: [
+      { id:"R 1", tamanhos:{ 40:30, 42:30 }, dobras:30, enfesto:1.275, metros:76.50,  ef:83 },
+      { id:"R 2", tamanhos:{ 38:20, 40:40, 42:20 }, dobras:20, enfesto:2.528, metros:101.12, ef:85 },
+      { id:"R 3", tamanhos:{ 36:10, 46:10 }, dobras:10, enfesto:1.292, metros:25.84,  ef:83 },
+    ],
+    ttCorte:   160,
+    ttCorteG:  160,
+    cortePlus: 0,
+    pecaRisco: 31.40,
+    tecidoPeca:1.27,
+    totalRiscos:3,
+    responsaveis: [
+      { etapa:"ENFESTO",  responsavel:"", dataIni:"", dataFim:"", obs:"" },
+      { etapa:"CORTE",    responsavel:"", dataIni:"", dataFim:"", obs:"" },
+      { etapa:"CARIMBO",  responsavel:"", dataIni:"", dataFim:"", obs:"" },
+      { etapa:"COSTURA",  responsavel:"", dataIni:"", dataFim:"", obs:"" },
+    ],
+    localTecido: ""
+  },
+  "OPD002612.1": {
+    faccao:"VIA GRÁFIT", rem:"12", data:"22/03/2026", hora:"09:15:00", lavanderia:"LAVDENIM",
+    ref:"7696", modelo:"CALÇA FEM BOOTCUT PETIT", tecido:"JULIA PLUS", cor:"JEANS", largura:"1,50",
+    tamanhos:[34,36,38,40,42,44,46,48],
+    grade:{ 34:5, 36:7, 38:12, 40:12, 42:24, 44:12, 46:12, 48:7 },
+    riscos:[
+      { id:"R 1", tamanhos:{ 42:12, 44:12 }, dobras:24, enfesto:1.100, metros:52.80, ef:86 },
+      { id:"R 2", tamanhos:{ 38:12, 40:12 }, dobras:12, enfesto:1.050, metros:25.20, ef:88 },
+      { id:"R 3", tamanhos:{ 34:5, 36:7, 46:12, 48:7 }, dobras:7, enfesto:0.980, metros:13.72, ef:84 },
+    ],
+    ttCorte:91, ttCorteG:91, cortePlus:0,
+    pecaRisco:30.33, tecidoPeca:1.00, totalRiscos:3,
+    responsaveis:[
+      { etapa:"ENFESTO", responsavel:"CARLOS", dataIni:"22/03", dataFim:"22/03", obs:"" },
+      { etapa:"CORTE",   responsavel:"MARCOS",  dataIni:"22/03", dataFim:"23/03", obs:"" },
+      { etapa:"CARIMBO", responsavel:"", dataIni:"", dataFim:"", obs:"" },
+      { etapa:"COSTURA", responsavel:"", dataIni:"", dataFim:"", obs:"" },
+    ],
+    localTecido:"ESTOQUE B - PRATELEIRA 3"
+  },
+  "OPD002598.1": {
+    faccao:"VIA GRÁFIT", rem:"12", data:"20/03/2026", hora:"08:00:00", lavanderia:"LAVDENIM",
+    ref:"6074", modelo:"CALÇA MAS RETA COMFORT", tecido:"DENIM STRETCH", cor:"UNICA", largura:"1,60",
+    tamanhos:[34,36,38,40,42,44,46,48],
+    grade:{ 36:10, 38:20, 40:20, 42:30, 44:10, 46:10 },
+    riscos:[
+      { id:"R 1", tamanhos:{ 40:20, 42:20 }, dobras:20, enfesto:1.200, metros:48.00, ef:82 },
+      { id:"R 2", tamanhos:{ 38:20, 44:10, 46:10 }, dobras:10, enfesto:1.180, metros:23.60, ef:80 },
+      { id:"R 3", tamanhos:{ 36:10, 42:10 }, dobras:10, enfesto:1.050, metros:21.00, ef:81 },
+    ],
+    ttCorte:100, ttCorteG:100, cortePlus:0,
+    pecaRisco:33.33, tecidoPeca:0.93, totalRiscos:3,
+    responsaveis:[
+      { etapa:"ENFESTO", responsavel:"ANA", dataIni:"20/03", dataFim:"20/03", obs:"" },
+      { etapa:"CORTE",   responsavel:"PEDRO", dataIni:"21/03", dataFim:"21/03", obs:"" },
+      { etapa:"CARIMBO", responsavel:"", dataIni:"", dataFim:"", obs:"" },
+      { etapa:"COSTURA", responsavel:"", dataIni:"", dataFim:"", obs:"" },
+    ],
+    localTecido:"ESTOQUE A - PRATELEIRA 1"
+  },
+};
 
+// Ficha genérica para OPs sem ficha cadastrada
+function fichaGenerica(op) {
+  return {
+    faccao:"VIA GRÁFIT", rem:"12", data: new Date().toLocaleDateString('pt-BR'),
+    hora:"", lavanderia:"—",
+    ref: op.comando.replace("OPD","").replace(".1","").replace(".2",""),
+    modelo: op.produto, tecido: op.tecido, cor: op.cor, largura:"—",
+    tamanhos:[34,36,38,40,42,44,46,48],
+    grade:{},
+    riscos:[],
+    ttCorte: op.qtd, ttCorteG: op.qtd, cortePlus:0,
+    pecaRisco:"—", tecidoPeca:"—", totalRiscos:0,
+    responsaveis:[
+      { etapa:"ENFESTO", responsavel:"", dataIni:"", dataFim:"", obs:"" },
+      { etapa:"CORTE",   responsavel:"", dataIni:"", dataFim:"", obs:"" },
+      { etapa:"CARIMBO", responsavel:"", dataIni:"", dataFim:"", obs:"" },
+      { etapa:"COSTURA", responsavel:"", dataIni:"", dataFim:"", obs:"" },
+    ],
+    localTecido:""
+  };
+}
+
+// ── Utilitários ──
+let buscaAtual = '';
 function pct(b, t) { return t > 0 ? Math.round(b / t * 100) : 0; }
+function efCor(ef) { return ef >= 88 ? 'var(--success)' : ef >= 80 ? 'var(--warning)' : 'var(--danger)'; }
 function efClasse(ef) { return ef >= 88 ? 'ef-ok' : ef >= 80 ? 'ef-med' : 'ef-low'; }
-function efTexto(ef)  { return ef >= 88 ? '✅ Acima da meta' : ef >= 80 ? '⚠️ Abaixo da meta' : '❌ Crítico'; }
 
+// ── LISTA ──
 function getDados() {
   const ini = parseInt(document.getElementById('sem-ini').value) || 1;
   const fin = parseInt(document.getElementById('sem-fin').value) || 52;
   return dadosPCP.filter(op => {
     const inRange = op.semana >= ini && op.semana <= fin;
     const txt = (op.comando + op.produto + op.cor + op.desc + op.tecido).toLowerCase();
-    return inRange && (!busca || txt.includes(busca.toLowerCase()));
+    return inRange && (!buscaAtual || txt.includes(buscaAtual.toLowerCase()));
   });
 }
 
 function renderSemana() {
-  const ini = parseInt(document.getElementById('sem-ini').value) || 12;
+  const ini  = parseInt(document.getElementById('sem-ini').value) || 12;
   const ops  = getDados();
-  const totalQtd  = ops.reduce((s,o) => s + o.qtd, 0);
-  const totalBaix = ops.reduce((s,o) => s + o.baixado, 0);
-  const totalSald = totalQtd - totalBaix;
+  const tQtd = ops.reduce((s,o) => s + o.qtd, 0);
+  const tBx  = ops.reduce((s,o) => s + o.baixado, 0);
+  const tSld = tQtd - tBx;
 
   const card = document.getElementById('semana-card');
   card.innerHTML = `
@@ -496,36 +528,39 @@ function renderSemana() {
       <div class="semana-stats">
         <div class="stat-item">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-          Qtd: ${totalQtd.toLocaleString('pt-BR')}
+          Qtd: ${tQtd.toLocaleString('pt-BR')}
         </div>
         <div class="stat-item">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-          Baixado: ${totalBaix.toLocaleString('pt-BR')}
+          Baixado: ${tBx.toLocaleString('pt-BR')}
         </div>
         <div class="stat-item">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Saldo: ${totalSald.toLocaleString('pt-BR')}
+          Saldo: ${tSld.toLocaleString('pt-BR')}
         </div>
       </div>
     </div>
 
     <div class="busca-wrap">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input class="busca-input" type="text" placeholder="Buscar comando, produto, cor..." value="${busca}" oninput="setBusca(this.value)" />
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input class="busca-input" type="text" placeholder="Buscar comando, produto, cor..."
+        value="${buscaAtual}" oninput="setBusca(this.value)" />
     </div>
 
     <div class="table-wrap">
       ${ops.length === 0
         ? `<div class="empty">
-             <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+             <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+             </svg>
              <p>Nenhuma OP encontrada</p>
            </div>`
         : `<table>
              <thead>
                <tr>
-                 <th>Comando</th>
-                 <th>Produto</th>
-                 <th>Cor</th>
+                 <th>Comando</th><th>Produto</th><th>Cor</th>
                  <th>Descrição</th>
                  <th class="num">Quantidade</th>
                  <th class="num">Baixado</th>
@@ -536,10 +571,10 @@ function renderSemana() {
                ${ops.map(op => {
                  const saldo = op.qtd - op.baixado;
                  const p     = pct(op.baixado, op.qtd);
-                 const bCls  = p === 100 ? 'td-baixado-ok' : p >= 60 ? 'td-baixado-med' : 'td-baixado-low';
-                 const sCls  = saldo === 0 ? 'td-saldo-zero' : 'td-saldo-pend';
+                 const bCls  = p===100 ? 'td-baixado-ok' : p>=60 ? 'td-baixado-med' : 'td-baixado-low';
+                 const sCls  = saldo===0 ? 'td-saldo-zero' : 'td-saldo-pend';
                  return `
-                 <tr onclick="abrirModal('${op.comando}')">
+                 <tr onclick="abrirFicha('${op.comando}')">
                    <td class="td-comando">${op.comando}</td>
                    <td class="td-produto">${op.produto}</td>
                    <td class="td-cor">${op.cor}</td>
@@ -556,59 +591,145 @@ function renderSemana() {
   `;
 }
 
-function recarregar() { busca = ''; renderSemana(); }
-function setBusca(v)  { busca = v; renderSemana(); }
+function recarregar() { buscaAtual = ''; renderSemana(); }
+function setBusca(v)  { buscaAtual = v; renderSemana(); }
 
-// ── Modal ──
-function abrirModal(id) {
-  const op    = dadosPCP.find(o => o.comando === id);
-  const saldo = op.qtd - op.baixado;
-  const p     = pct(op.baixado, op.qtd);
-  const ec    = efClasse(op.ef);
+// ── FICHA TÉCNICA ──
+function abrirFicha(cmdId) {
+  const op     = dadosPCP.find(o => o.comando === cmdId);
+  const ficha  = fichas[cmdId] || fichaGenerica(op);
+  const tams   = ficha.tamanhos;
 
-  document.getElementById('m-cmd').textContent    = op.comando;
-  document.getElementById('m-prod').textContent   = op.produto;
-  document.getElementById('m-tecido').textContent = op.tecido;
-  document.getElementById('m-cor').textContent    = op.cor;
-  document.getElementById('m-desc').textContent   = op.desc;
-  document.getElementById('m-linha').textContent  = op.linha;
-  document.getElementById('m-qtd').textContent    = op.qtd + ' pcs';
-  document.getElementById('m-baixado').textContent = op.baixado + ' pcs';
-  document.getElementById('m-saldo').textContent  = saldo + ' pcs';
-  document.getElementById('m-prog-pct').textContent = p + '%';
-  document.getElementById('m-prog-bar').style.width = p + '%';
-  document.getElementById('m-prog-left').textContent  = op.baixado + ' peças produzidas';
-  document.getElementById('m-prog-right').textContent = op.qtd + ' total';
+  // header
+  document.getElementById('f-cmd').textContent       = op.comando;
+  document.getElementById('f-prod').textContent      = op.produto;
+  document.getElementById('f-faccao').textContent    = ficha.faccao;
+  document.getElementById('f-rem').textContent       = ficha.rem;
+  document.getElementById('f-data').textContent      = ficha.data + (ficha.hora ? ' ' + ficha.hora : '');
+  document.getElementById('f-lavanderia').textContent= ficha.lavanderia;
+  document.getElementById('f-ref').textContent       = ficha.ref;
+  document.getElementById('f-opd').textContent       = op.comando;
+  document.getElementById('f-modelo').textContent    = ficha.modelo;
+  document.getElementById('f-tecido').textContent    = ficha.tecido + ' - ' + ficha.cor;
+  document.getElementById('f-cor').textContent       = ficha.cor;
+  document.getElementById('f-largura').textContent   = ficha.largura + ' m';
 
-  const efEl = document.getElementById('m-ef-circle');
-  efEl.textContent = op.ef + '%';
-  efEl.className   = 'ef-circle ' + ec;
-  document.getElementById('m-ef-status').textContent = efTexto(op.ef);
-  document.getElementById('m-ef-status').style.color =
-    op.ef >= 88 ? 'var(--success)' : op.ef >= 80 ? '#d97706' : '#dc2626';
-  document.getElementById('m-ef-sub').textContent = `Meta: 88% | Real: ${op.ef}%`;
+  // resumo rápido
+  const totalEf = ficha.riscos.length
+    ? (ficha.riscos.reduce((s,r)=>s+r.ef,0)/ficha.riscos.length).toFixed(0)
+    : op.ef;
+  const totalMetros = ficha.riscos.reduce((s,r)=>s+(r.metros||0),0).toFixed(2);
+  document.getElementById('f-resumo').innerHTML = `
+    <div class="rc-item"><div class="rc-lbl">TT Corte</div><div class="rc-val">${ficha.ttCorte}</div></div>
+    <div class="rc-item"><div class="rc-lbl">Nº Riscos</div><div class="rc-val">${ficha.totalRiscos}</div></div>
+    <div class="rc-item"><div class="rc-lbl">Total Metros</div><div class="rc-val">${totalMetros}</div></div>
+    <div class="rc-item"><div class="rc-lbl">Ef. Média</div>
+      <div class="rc-val" style="color:${efCor(parseInt(totalEf))}">${totalEf}%</div>
+    </div>
+  `;
 
-  document.getElementById('m-grade').innerHTML = Object.entries(op.grade).map(([t,q]) =>
-    `<div class="grade-item ${q===0?'zero':''}">
-       <div class="g-tam">Tam ${t}</div>
-       <div class="g-qtd">${q}</div>
-     </div>`).join('');
+  // Tabela riscos
+  const rTbl = document.getElementById('f-riscos-table');
+  rTbl.innerHTML = `
+    <thead>
+      <tr>
+        <th style="text-align:left;min-width:60px">Risco</th>
+        ${tams.map(t=>`<th class="tam-col">${t}</th>`).join('')}
+        <th class="col-total">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row-grade">
+        <td class="row-label">GRADE</td>
+        ${tams.map(t=>{
+          const v = ficha.grade[t];
+          return `<td class="${v?'val-blue':'val-empty'}">${v||''}</td>`;
+        }).join('')}
+        <td class="col-total">${Object.values(ficha.grade).reduce((s,v)=>s+v,0)}</td>
+      </tr>
+      ${ficha.riscos.length ? ficha.riscos.map(r=>{
+        const tot = Object.values(r.tamanhos).reduce((s,v)=>s+v,0);
+        return `
+        <tr>
+          <td class="row-label">${r.id}</td>
+          ${tams.map(t=>{
+            const v = r.tamanhos[t];
+            return `<td class="${v?'val-blue':'val-empty'}">${v||''}</td>`;
+          }).join('')}
+          <td class="col-total">${tot}</td>
+        </tr>`;
+      }).join('') : `<tr><td class="row-label" colspan="${tams.length+2}" style="text-align:center;color:var(--muted);padding:16px">Nenhum risco cadastrado</td></tr>`}
+      <tr class="row-tt">
+        <td class="row-label">TT Corte</td>
+        ${tams.map(t=>{
+          const v = ficha.grade[t];
+          return `<td>${v||''}</td>`;
+        }).join('')}
+        <td class="col-total">${ficha.ttCorte}</td>
+      </tr>
+    </tbody>
+  `;
 
-  document.getElementById('m-obs').innerHTML = op.obs.map(o =>
-    `<div class="obs-item">
-       <span class="obs-data">${o.data}</span>
-       <span>${o.txt}</span>
-     </div>`).join('');
+  // Totais por risco
+  const tTbl = document.getElementById('f-totais-table');
+  if (ficha.riscos.length) {
+    const totalEnf = ficha.riscos.reduce((s,r)=>s+(r.enfesto||0),0).toFixed(3);
+    const totalMet = ficha.riscos.reduce((s,r)=>s+(r.metros||0),0).toFixed(2);
+    tTbl.innerHTML = `
+      <thead>
+        <tr>
+          <th style="text-align:left">Risco</th>
+          <th>Dobras</th>
+          <th>Enfesto</th>
+          <th>Metros</th>
+          <th>Ef. Risco (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${ficha.riscos.map(r=>`
+        <tr>
+          <td class="row-label">${r.id}</td>
+          <td>${r.dobras}</td>
+          <td>${r.enfesto.toFixed(3)}</td>
+          <td>${r.metros.toFixed(2)}</td>
+          <td class="${efClasse(r.ef)}">${r.ef}%</td>
+        </tr>`).join('')}
+        <tr class="total-row">
+          <td class="row-label">TOTAL / MÉDIA</td>
+          <td>${ficha.riscos.reduce((s,r)=>s+r.dobras,0)}</td>
+          <td>${totalEnf}</td>
+          <td>${totalMet}</td>
+          <td class="${efClasse(parseInt(totalEf))}">${totalEf}%</td>
+        </tr>
+        <tr>
+          <td class="row-label" colspan="2">Peça/Risco</td>
+          <td colspan="3">${ficha.pecaRisco} | Tecido/Peça: ${ficha.tecidoPeca}</td>
+        </tr>
+      </tbody>
+    `;
+  } else {
+    tTbl.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:16px">Sem dados de risco</td></tr>`;
+  }
 
-  document.getElementById('modal-overlay').classList.add('open');
+  // Responsáveis
+  document.getElementById('f-resp-body').innerHTML = ficha.responsaveis.map(r=>`
+    <tr>
+      <td class="resp-label">${r.etapa}</td>
+      <td>${r.responsavel || '—'}</td>
+      <td>${r.dataIni || '—'}</td>
+      <td>${r.dataFim || '—'}</td>
+      <td>${r.obs || '—'}</td>
+    </tr>`).join('');
+
+  document.getElementById('f-local-tecido').textContent = ficha.localTecido || '—';
+
+  // Abre a tela
+  document.getElementById('tela-ficha').style.display = 'block';
+  document.getElementById('tela-ficha').scrollTop = 0;
 }
 
-function fecharModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-}
-
-function fecharModalOverlay(e) {
-  if (e.target === document.getElementById('modal-overlay')) fecharModal();
+function fecharFicha() {
+  document.getElementById('tela-ficha').style.display = 'none';
 }
 
 // ── Init ──
