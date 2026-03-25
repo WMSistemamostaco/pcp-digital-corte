@@ -4,747 +4,615 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>PCP Digital</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary:      #4a1fa8;
-      --primary-lt:   #ede8fa;
-      --accent:       #7c3aed;
-      --success:      #16a34a;
-      --success-lt:   #dcfce7;
-      --warning:      #d97706;
-      --warning-lt:   #fef3c7;
-      --danger:       #dc2626;
-      --danger-lt:    #fee2e2;
-      --bg:           #f4f5f8;
-      --card:         #ffffff;
-      --text:         #1e1e2e;
-      --muted:        #6b7280;
-      --border:       #e5e7eb;
-      --radius:       12px;
-      --shadow:       0 2px 8px rgba(0,0,0,0.08);
-      --shadow-lg:    0 8px 24px rgba(0,0,0,0.12);
+      --primary: #7c3aed;
+      --primary-lt: #ede9fe;
+      --success: #16a34a;
+      --success-lt: #dcfce7;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #f8f9fb;
+      --card: #ffffff;
+      --text: #111827;
+      --radius: 14px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
     }
 
-    /* ── HEADER ── */
-    .app-header {
-      background: var(--primary);
-      color: white;
-      padding: 16px 20px 14px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(74,31,168,0.35);
-    }
-    .app-header h1 { font-size: 1.1rem; font-weight: 700; letter-spacing: .3px; }
-    .app-header small { font-size: 0.75rem; opacity: .75; }
-
-    .header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .semana-badge {
-      background: rgba(255,255,255,0.2);
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    /* ── BUSCA + FILTRO ── */
-    .search-bar {
-      padding: 14px 16px 8px;
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 58px;
-      z-index: 99;
-    }
-    .search-input-wrap {
-      position: relative;
-    }
-    .search-input-wrap svg {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      pointer-events: none;
-    }
-    .search-input {
-      width: 100%;
-      padding: 10px 12px 10px 38px;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      outline: none;
-      transition: border-color .2s;
-    }
-    .search-input:focus { border-color: var(--accent); }
-
-    .filter-chips {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-    .filter-chips::-webkit-scrollbar { display: none; }
-
-    .chip {
-      flex-shrink: 0;
-      padding: 5px 14px;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1.5px solid var(--border);
+    /* ── TOP NAV ── */
+    .top-nav {
       background: white;
-      color: var(--muted);
-      transition: all .15s;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
     }
-    .chip.active {
+    .top-nav-left { display: flex; align-items: center; gap: 18px; }
+    .nav-icon { color: var(--muted); cursor: pointer; display: flex; align-items: center; }
+    .nav-icon svg { width: 22px; height: 22px; }
+
+    /* ── CONTAINER ── */
+    .page { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
+
+    /* ── CARD PERÍODO ── */
+    .periodo-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .periodo-titulo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .periodo-titulo::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 20px;
       background: var(--primary);
-      border-color: var(--primary);
-      color: white;
+      border-radius: 2px;
     }
-
-    /* ── RESUMO ── */
-    .resumo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 14px 16px 10px;
-    }
-    .resumo-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 12px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-    .resumo-card .valor {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-    .resumo-card .label { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
-
-    /* ── LISTA DE OPs ── */
-    .container { padding: 0 16px 100px; max-width: 680px; margin: auto; }
-
-    .secao-titulo {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      padding: 12px 0 6px;
-    }
-
-    .op-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 16px;
-      margin-bottom: 10px;
-      box-shadow: var(--shadow);
+    .periodo-form {
       display: flex;
-      align-items: center;
       gap: 14px;
-      cursor: pointer;
-      transition: transform .15s, box-shadow .15s;
-      border-left: 5px solid var(--primary);
-      position: relative;
-      overflow: hidden;
-    }
-    .op-card:active { transform: scale(0.98); }
-    .op-card:hover { box-shadow: var(--shadow-lg); }
-
-    .op-card-ef {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .ef-ok  { background: var(--success-lt); color: var(--success); }
-    .ef-med { background: var(--warning-lt); color: var(--warning); }
-    .ef-low { background: var(--danger-lt);  color: var(--danger); }
-
-    .op-card-info { flex: 1; min-width: 0; }
-    .op-card-cmd  { font-weight: 700; font-size: 0.92rem; font-family: 'DM Mono', monospace; }
-    .op-card-prod { font-size: 0.78rem; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    .op-card-meta {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
+      align-items: flex-end;
       flex-wrap: wrap;
     }
-    .tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 20px;
-      background: var(--primary-lt);
-      color: var(--primary);
+    .form-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 120px; }
+    .form-group label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
+    .form-group input {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s;
+      background: white;
     }
-    .tag.green { background: var(--success-lt); color: var(--success); }
-    .tag.orange { background: var(--warning-lt); color: var(--warning); }
+    .form-group input:focus { border-color: var(--primary); }
 
-    .op-card-right { text-align: right; flex-shrink: 0; }
-    .op-card-qtd { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-    .op-card-pcs  { font-size: 0.68rem; color: var(--muted); }
-
-    .progress-wrap { margin-top: 8px; background: var(--border); border-radius: 4px; height: 5px; overflow: hidden; }
-    .progress-bar  { height: 100%; border-radius: 4px; background: var(--success); transition: width .4s; }
-
-    /* ── DETALHE ── */
-    #tela-detalhe {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 300;
-      overflow-y: auto;
-    }
-
-    .det-header {
+    .btn-recarregar {
       background: var(--primary);
       color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: background .15s;
+      flex-shrink: 0;
+    }
+    .btn-recarregar:hover { background: #6d28d9; }
+    .btn-recarregar svg { width: 16px; height: 16px; }
+
+    /* ── CARD SEMANA ── */
+    .semana-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .semana-header {
+      background: #f5f3ff;
       padding: 16px 20px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid #ede9fe;
+    }
+    .semana-header-left { display: flex; align-items: center; gap: 12px; }
+    .semana-titulo { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+    .badge-comandos {
+      background: var(--primary-lt);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .semana-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .stat-item svg { width: 16px; height: 16px; color: var(--muted); }
+
+    /* ── BUSCA ── */
+    .busca-wrap {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .busca-wrap svg {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      width: 16px;
+      height: 16px;
+    }
+    .busca-input {
+      width: 100%;
+      padding: 9px 12px 9px 36px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      outline: none;
+    }
+    .busca-input:focus { border-color: var(--primary); }
+
+    /* ── TABELA ── */
+    .table-wrap { overflow-x: auto; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    thead tr { border-bottom: 2px solid var(--border); }
+    thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    thead th.num { text-align: right; }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .1s;
+      cursor: pointer;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #fafafa; }
+
+    tbody td { padding: 14px 16px; vertical-align: middle; }
+    tbody td.num { text-align: right; }
+
+    .td-comando { font-weight: 700; font-size: 0.85rem; white-space: nowrap; }
+    .td-cor  { color: var(--muted); }
+    .td-desc { color: var(--muted); }
+
+    .td-baixado-ok  { color: var(--success); font-weight: 700; }
+    .td-baixado-med { color: #d97706; font-weight: 700; }
+    .td-baixado-low { color: #dc2626; font-weight: 700; }
+
+    .td-saldo-zero { color: var(--success); font-weight: 700; }
+    .td-saldo-pend { color: #d97706; font-weight: 700; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 400;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: 16px 16px 0 0;
+      width: 100%;
+      max-width: 640px;
+      max-height: 92vh;
+      overflow-y: auto;
+      animation: slideUp .25s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+    .modal-header {
+      background: var(--primary);
+      color: white;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
       gap: 14px;
+      border-radius: 16px 16px 0 0;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 5;
     }
-    .det-header-back {
+    .modal-back {
       background: rgba(255,255,255,0.2);
       border: none;
       color: white;
       border-radius: 8px;
-      padding: 8px 14px;
-      font-family: 'DM Sans', sans-serif;
+      padding: 7px 14px;
+      font-family: 'Inter', sans-serif;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       cursor: pointer;
       flex-shrink: 0;
     }
-    .det-header-title .cmd { font-size: 1rem; font-weight: 700; font-family: 'DM Mono', monospace; }
-    .det-header-title .prod { font-size: 0.75rem; opacity: .8; margin-top: 2px; }
+    .modal-header-info .cmd  { font-size: 0.95rem; font-weight: 700; }
+    .modal-header-info .prod { font-size: 0.75rem; opacity: .8; margin-top: 2px; }
 
-    .det-section { padding: 16px; }
-    .det-section + .det-section { padding-top: 0; }
+    .modal-body { padding: 18px 20px 36px; }
 
-    .det-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .det-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .modal-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .modal-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 12px; }
 
-    .info-box {
-      background: var(--card);
-      border-radius: var(--radius);
+    .info-tile {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .info-tile .lbl { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .info-tile .val { font-size: 0.92rem; font-weight: 700; margin-top: 3px; }
+
+    .ef-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg);
+      border-radius: 10px;
       padding: 14px;
-      box-shadow: var(--shadow);
+      margin-bottom: 12px;
     }
-    .info-box .lbl { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
-    .info-box .val { font-size: 0.95rem; font-weight: 700; margin-top: 4px; }
-
-    /* Eficiência grande */
-    .ef-destaque {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 10px;
-    }
-    .ef-circulo {
-      width: 80px;
-      height: 80px;
+    .ef-circle {
+      width: 64px; height: 64px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 700;
       flex-shrink: 0;
     }
-    .ef-info .ef-titulo { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
-    .ef-info .ef-status { font-size: 1.1rem; font-weight: 700; margin-top: 4px; }
-    .ef-info .ef-meta   { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .ef-ok  { background: #dcfce7; color: #16a34a; }
+    .ef-med { background: #fef3c7; color: #d97706; }
+    .ef-low { background: #fee2e2; color: #dc2626; }
+    .ef-row-info .ef-label  { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .ef-row-info .ef-status { font-size: 0.95rem; font-weight: 700; margin-top: 3px; }
+    .ef-row-info .ef-sub    { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
 
-    /* Barra de progresso grande */
-    .progresso-box {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-    .progresso-box .prog-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .progresso-box .prog-bar-wrap {
-      background: var(--border);
-      border-radius: 6px;
-      height: 10px;
-      overflow: hidden;
-    }
-    .progresso-box .prog-bar {
-      height: 100%;
-      border-radius: 6px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-    }
-    .progresso-box .prog-sub {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: 6px;
-    }
+    .prog-box { background: var(--bg); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .prog-top { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 600; margin-bottom: 8px; }
+    .prog-bar-bg { background: var(--border); border-radius: 6px; height: 9px; overflow: hidden; }
+    .prog-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--primary), #a78bfa); }
+    .prog-sub { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
 
-    /* Grade de tamanhos */
-    .grade-section { background: var(--card); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
-    .grade-section h3 { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
-    .grade-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
-    .grade-item {
-      background: var(--bg);
-      border-radius: 8px;
-      padding: 10px 6px;
-      text-align: center;
-    }
-    .grade-item .tam { font-size: 0.7rem; color: var(--muted); font-weight: 600; }
-    .grade-item .qtd { font-size: 1.1rem; font-weight: 700; margin-top: 2px; }
-    .grade-item.zero { opacity: 0.35; }
+    .grade-box { background: var(--bg); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .grade-box h3 { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 10px; }
+    .grade-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+    @media(min-width:400px){ .grade-grid { grid-template-columns: repeat(8,1fr); } }
+    .grade-item { background: white; border-radius: 8px; padding: 8px 4px; text-align: center; }
+    .grade-item .g-tam { font-size: 0.65rem; color: var(--muted); font-weight: 600; }
+    .grade-item .g-qtd { font-size: 1rem; font-weight: 700; margin-top: 2px; }
+    .grade-item.zero { opacity: .35; }
 
-    /* Histórico/Observações */
-    .obs-box {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-    .obs-box h3 { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
-    .obs-item {
-      display: flex;
-      gap: 10px;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.82rem;
-    }
+    .obs-box { background: var(--bg); border-radius: 10px; padding: 14px; }
+    .obs-box h3 { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 10px; }
+    .obs-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
     .obs-item:last-child { border-bottom: none; }
-    .obs-item .obs-data { color: var(--muted); white-space: nowrap; font-size: 0.75rem; font-family: 'DM Mono', monospace; }
+    .obs-data { color: var(--muted); font-size: 0.73rem; white-space: nowrap; }
 
-    /* Vazio */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--muted);
-    }
-    .empty-state svg { margin-bottom: 12px; opacity: .4; }
-    .empty-state p { font-weight: 600; }
+    .empty { text-align: center; padding: 40px 20px; color: var(--muted); }
+    .empty p { font-weight: 600; margin-top: 10px; }
 
-    /* Toast de status ERP */
-    .erp-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 20px;
-      padding: 4px 10px;
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-    .erp-dot { width: 7px; height: 7px; border-radius: 50%; background: #86efac; animation: pulse 1.8s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-
-    @media (min-width: 480px) {
-      .grade-grid { grid-template-columns: repeat(8, 1fr); }
-      .det-grid-3 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 600px) {
+      .semana-stats { gap: 12px; }
+      .stat-item { font-size: 0.78rem; }
+      thead th, tbody td { padding: 10px 10px; font-size: 0.82rem; }
+      .td-produto { max-width: 130px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     }
   </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════
-     TELA LISTA
-════════════════════════════════ -->
-<div id="tela-lista">
-  <header class="app-header">
-    <div class="header-row">
-      <div>
-        <h1>PCP Digital</h1>
-        <small>Wilian — Produção</small>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
-        <span class="semana-badge">Semana 12</span>
-        <span class="erp-badge"><span class="erp-dot"></span>ERP Conectado</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- Busca + Filtros -->
-  <div class="search-bar">
-    <div class="search-input-wrap">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+<!-- NAV -->
+<div class="top-nav">
+  <div class="top-nav-left">
+    <span class="nav-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M3 9.75L12 3l9 6.75V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.75z"/>
+        <path d="M9 22V12h6v10"/>
       </svg>
-      <input
-        class="search-input"
-        type="text"
-        id="input-busca"
-        placeholder="Buscar OP, produto, tecido..."
-        oninput="filtrar()"
-      />
-    </div>
-    <div class="filter-chips">
-      <span class="chip active" data-filtro="todos" onclick="setFiltro(this)">Todos</span>
-      <span class="chip" data-filtro="alta" onclick="setFiltro(this)">✅ Ef. Alta</span>
-      <span class="chip" data-filtro="baixa" onclick="setFiltro(this)">⚠️ Ef. Baixa</span>
-      <span class="chip" data-filtro="feminino" onclick="setFiltro(this)">Feminino</span>
-      <span class="chip" data-filtro="masculino" onclick="setFiltro(this)">Masculino</span>
-    </div>
+    </span>
+    <span class="nav-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M15 19l-7-7 7-7"/>
+      </svg>
+    </span>
   </div>
-
-  <!-- Resumo -->
-  <div class="resumo-grid" id="resumo"></div>
-
-  <!-- Lista -->
-  <div class="container">
-    <div class="secao-titulo">Ordens de Produção</div>
-    <div id="lista-corpo"></div>
-  </div>
+  <span class="nav-icon">
+    <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+    </svg>
+  </span>
 </div>
 
-<!-- ════════════════════════════════
-     TELA DETALHE
-════════════════════════════════ -->
-<div id="tela-detalhe">
-  <div class="det-header">
-    <button class="det-header-back" onclick="fecharDetalhe()">← Voltar</button>
-    <div class="det-header-title">
-      <div class="cmd" id="det-comando"></div>
-      <div class="prod" id="det-produto"></div>
+<!-- PAGE -->
+<div class="page">
+
+  <!-- PERÍODO -->
+  <div class="periodo-card">
+    <div class="periodo-titulo">Período</div>
+    <div class="periodo-form">
+      <div class="form-group">
+        <label>Semana Inicial</label>
+        <input type="number" id="sem-ini" value="12" min="1" max="52" />
+      </div>
+      <div class="form-group">
+        <label>Semana Final</label>
+        <input type="number" id="sem-fin" value="28" min="1" max="52" />
+      </div>
+      <button class="btn-recarregar" onclick="recarregar()">
+        <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path d="M1 4v6h6"/><path d="M23 20v-6h-6"/>
+          <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
+        </svg>
+        Recarregar
+      </button>
     </div>
   </div>
 
-  <div class="det-section">
-    <!-- Eficiência -->
-    <div class="ef-destaque">
-      <div class="ef-circulo" id="det-ef-circulo"></div>
-      <div class="ef-info">
-        <div class="ef-titulo">Eficiência da OP</div>
-        <div class="ef-status" id="det-ef-status"></div>
-        <div class="ef-meta" id="det-ef-meta"></div>
+  <!-- SEMANA CARD -->
+  <div id="semana-card" class="semana-card"></div>
+
+</div>
+
+<!-- MODAL DETALHE -->
+<div class="modal-overlay" id="modal-overlay" onclick="fecharModalOverlay(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-back" onclick="fecharModal()">← Voltar</button>
+      <div class="modal-header-info">
+        <div class="cmd" id="m-cmd"></div>
+        <div class="prod" id="m-prod"></div>
       </div>
     </div>
+    <div class="modal-body">
 
-    <!-- Progresso -->
-    <div class="progresso-box" style="margin-bottom:10px">
-      <div class="prog-label">
-        <span>Progresso de Baixa</span>
-        <span id="det-baixado-pct"></span>
+      <div class="ef-row">
+        <div class="ef-circle" id="m-ef-circle"></div>
+        <div class="ef-row-info">
+          <div class="ef-label">Eficiência</div>
+          <div class="ef-status" id="m-ef-status"></div>
+          <div class="ef-sub" id="m-ef-sub"></div>
+        </div>
       </div>
-      <div class="prog-bar-wrap">
-        <div class="prog-bar" id="det-prog-bar" style="width:0%"></div>
+
+      <div class="prog-box">
+        <div class="prog-top">
+          <span>Progresso de Baixa</span>
+          <span id="m-prog-pct"></span>
+        </div>
+        <div class="prog-bar-bg">
+          <div class="prog-bar-fill" id="m-prog-bar" style="width:0%"></div>
+        </div>
+        <div class="prog-sub">
+          <span id="m-prog-left"></span>
+          <span id="m-prog-right"></span>
+        </div>
       </div>
-      <div class="prog-sub">
-        <span id="det-prog-sub-left"></span>
-        <span id="det-prog-sub-right"></span>
+
+      <div class="modal-grid-2">
+        <div class="info-tile"><div class="lbl">Tecido</div><div class="val" id="m-tecido"></div></div>
+        <div class="info-tile"><div class="lbl">Cor</div><div class="val" id="m-cor"></div></div>
+        <div class="info-tile"><div class="lbl">Descrição</div><div class="val" id="m-desc"></div></div>
+        <div class="info-tile"><div class="lbl">Linha</div><div class="val" id="m-linha"></div></div>
       </div>
-    </div>
+      <div class="modal-grid-3">
+        <div class="info-tile"><div class="lbl">Quantidade</div><div class="val" id="m-qtd"></div></div>
+        <div class="info-tile"><div class="lbl">Baixado</div><div class="val" id="m-baixado"></div></div>
+        <div class="info-tile"><div class="lbl">Saldo</div><div class="val" id="m-saldo"></div></div>
+      </div>
 
-    <!-- Info técnica -->
-    <div class="det-grid-2" style="margin-bottom:10px">
-      <div class="info-box"><div class="lbl">Tecido</div><div class="val" id="det-tecido"></div></div>
-      <div class="info-box"><div class="lbl">Cor</div><div class="val" id="det-cor"></div></div>
-      <div class="info-box"><div class="lbl">Destino</div><div class="val" id="det-destino"></div></div>
-      <div class="info-box"><div class="lbl">Linha</div><div class="val" id="det-linha"></div></div>
-    </div>
+      <div class="grade-box">
+        <h3>Grade de Tamanhos</h3>
+        <div class="grade-grid" id="m-grade"></div>
+      </div>
 
-    <div class="det-grid-3" style="margin-bottom:10px">
-      <div class="info-box"><div class="lbl">Qtd Total</div><div class="val" id="det-qtd"></div></div>
-      <div class="info-box"><div class="lbl">Qtd Baixada</div><div class="val" id="det-baixada"></div></div>
-      <div class="info-box"><div class="lbl">Saldo</div><div class="val" id="det-saldo"></div></div>
-      <div class="info-box"><div class="lbl">Previsão</div><div class="val" id="det-previsao"></div></div>
-    </div>
-  </div>
+      <div class="obs-box">
+        <h3>Histórico / Observações</h3>
+        <div id="m-obs"></div>
+      </div>
 
-  <!-- Grade de tamanhos -->
-  <div class="det-section">
-    <div class="grade-section">
-      <h3>Grade de Tamanhos</h3>
-      <div class="grade-grid" id="det-grade"></div>
-    </div>
-  </div>
-
-  <!-- Observações -->
-  <div class="det-section">
-    <div class="obs-box">
-      <h3>Histórico / Observações</h3>
-      <div id="det-obs"></div>
     </div>
   </div>
 </div>
 
 <script>
 // ══════════════════════════════════════════════
-//  DADOS — substituir por chamada à API do ERP
-//  Exemplo futuro:
-//    const dados = await fetchERP('/api/pcp/semana/12');
+//  DADOS — substituir futuramente por:
+//  const res = await fetch(`/api/erp/pcp?semIni=${ini}&semFin=${fin}`);
+//  const dadosPCP = await res.json();
 // ══════════════════════════════════════════════
 const dadosPCP = [
-  {
-    comando:  "OPD002612.1",
-    produto:  "7696 - CALÇA FEM BOOTCUT PETIT",
-    cor:      "JEANS",
-    tecido:   "JULIA PLUS",
-    destino:  "LOJA SP",
-    linha:    "FEMININO",
-    qtd:      91,
-    baixado:  91,
-    ef:       86,
-    previsao: "28/03",
-    grade: { 34:5, 36:7, 38:12, 40:12, 42:24, 44:12, 46:12, 48:7 },
-    obs: [
-      { data: "22/03", texto: "Baixa iniciada — 45 peças confirmadas" },
-      { data: "24/03", texto: "Tecido suplementar liberado pelo almoxarifado" },
-      { data: "25/03", texto: "Finalização prevista para hoje" }
-    ]
-  },
-  {
-    comando:  "OPD002598.1",
-    produto:  "6074 - CALÇA MAS RETA COMFORT",
-    cor:      "UNICA",
-    tecido:   "DENIM STRETCH",
-    destino:  "E-COMMERCE",
-    linha:    "MASCULINO",
-    qtd:      100,
-    baixado:  100,
-    ef:       81,
-    previsao: "26/03",
-    grade: { 34:0, 36:10, 38:20, 40:20, 42:30, 44:10, 46:10, 48:0 },
-    obs: [
-      { data: "20/03", texto: "OP liberada pelo PCP" },
-      { data: "23/03", texto: "Eficiência abaixo da meta — monitorar" }
-    ]
-  },
-  {
-    comando:  "OPD002631.1",
-    produto:  "8102 - BERMUDA FEM CARGO",
-    cor:      "VERDE MILITAR",
-    tecido:   "SARJA ELASTANO",
-    destino:  "ATACADO",
-    linha:    "FEMININO",
-    qtd:      150,
-    baixado:  90,
-    ef:       92,
-    previsao: "30/03",
-    grade: { 34:10, 36:20, 38:30, 40:30, 42:30, 44:20, 46:10, 48:0 },
-    obs: [
-      { data: "24/03", texto: "Produção em andamento, 60% concluído" }
-    ]
-  },
-  {
-    comando:  "OPD002644.2",
-    produto:  "9010 - JAQUETA MAS JEANS",
-    cor:      "ÍNDIGO",
-    tecido:   "DENIM RÍGIDO",
-    destino:  "LOJA RJ",
-    linha:    "MASCULINO",
-    qtd:      60,
-    baixado:  15,
-    ef:       74,
-    previsao: "04/04",
-    grade: { 34:0, 36:0, 38:10, 40:15, 42:20, 44:10, 46:5, 48:0 },
-    obs: [
-      { data: "25/03", texto: "Atenção: eficiência abaixo da meta. Verificar setup da máquina." }
-    ]
-  }
+  { semana:12, comando:"OPD002612.1", produto:"7696 - CALÇA FEM BOOTCUT PETIT",      cor:"JEANS",         desc:"REM 12", linha:"FEMININO",  tecido:"JULIA PLUS",     qtd:91,  baixado:91,  ef:86, grade:{34:5,36:7,38:12,40:12,42:24,44:12,46:12,48:7},   obs:[{data:"22/03",txt:"Baixa iniciada — 45 pçs confirmadas"},{data:"25/03",txt:"Finalização prevista para hoje"}] },
+  { semana:12, comando:"OPD002598.1", produto:"6074 - CALÇA MAS RETA COMFORT",       cor:"UNICA",         desc:"REM 12", linha:"MASCULINO", tecido:"DENIM STRETCH",  qtd:100, baixado:100, ef:81, grade:{34:0,36:10,38:20,40:20,42:30,44:10,46:10,48:0},  obs:[{data:"20/03",txt:"OP liberada pelo PCP"},{data:"23/03",txt:"Eficiência abaixo da meta — monitorar"}] },
+  { semana:12, comando:"OPD002598.2", produto:"96074 - CALÇA MAS RETA COMFORT",      cor:"UNICA",         desc:"REM 12", linha:"MASCULINO", tecido:"DENIM STRETCH",  qtd:30,  baixado:30,  ef:90, grade:{34:0,36:4,38:8,40:8,42:6,44:4,46:0,48:0},       obs:[{data:"21/03",txt:"Concluída sem intercorrências"}] },
+  { semana:12, comando:"OPD002613.1", produto:"152 - CALÇA FEM SK CROPPED BV COLOR", cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"SARJA ELASTANO", qtd:145, baixado:145, ef:93, grade:{34:10,36:20,38:30,40:30,42:30,44:15,46:10,48:0},obs:[{data:"24/03",txt:"Produção concluída"}] },
+  { semana:12, comando:"OPD002614.2", produto:"9225 - BERM FEM CICLISTA COLOR",      cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"MALHA CANELADA", qtd:42,  baixado:42,  ef:88, grade:{34:4,36:6,38:10,40:10,42:8,44:4,46:0,48:0},     obs:[{data:"23/03",txt:"Finalizado"}] },
+  { semana:12, comando:"OPD002614.1", produto:"225 - BERM FEM CICLISTA COLOR",       cor:"MOCHA",         desc:"REM 12", linha:"FEMININO",  tecido:"MALHA CANELADA", qtd:208, baixado:208, ef:91, grade:{34:20,36:30,38:40,40:40,42:40,44:20,46:18,48:0},obs:[{data:"22/03",txt:"Alta eficiência registrada"}] },
+  { semana:12, comando:"OPD002631.1", produto:"8102 - BERMUDA FEM CARGO",            cor:"VERDE MILITAR", desc:"REM 12", linha:"FEMININO",  tecido:"SARJA ELASTANO", qtd:150, baixado:90,  ef:92, grade:{34:10,36:20,38:30,40:30,42:30,44:20,46:10,48:0},obs:[{data:"24/03",txt:"Produção em andamento, 60% concluído"}] },
+  { semana:12, comando:"OPD002644.2", produto:"9010 - JAQUETA MAS JEANS",            cor:"ÍNDIGO",        desc:"REM 12", linha:"MASCULINO", tecido:"DENIM RÍGIDO",   qtd:60,  baixado:15,  ef:74, grade:{34:0,36:0,38:10,40:15,42:20,44:10,46:5,48:0},   obs:[{data:"25/03",txt:"Atenção: eficiência crítica. Verificar setup."}] },
 ];
 
-// ══ Estado da UI ══
-let filtroAtivo = 'todos';
 let busca = '';
 
-// ══ Utilitários ══
-function pct(val, total) { return total > 0 ? Math.round(val / total * 100) : 0; }
+function pct(b, t) { return t > 0 ? Math.round(b / t * 100) : 0; }
+function efClasse(ef) { return ef >= 88 ? 'ef-ok' : ef >= 80 ? 'ef-med' : 'ef-low'; }
+function efTexto(ef)  { return ef >= 88 ? '✅ Acima da meta' : ef >= 80 ? '⚠️ Abaixo da meta' : '❌ Crítico'; }
 
-function efClasse(ef) {
-  if (ef >= 88) return 'ef-ok';
-  if (ef >= 80) return 'ef-med';
-  return 'ef-low';
-}
-
-function efTexto(ef) {
-  if (ef >= 88) return '✅ Acima da meta';
-  if (ef >= 80) return '⚠️ Abaixo da meta';
-  return '❌ Crítico';
-}
-
-// ══ Resumo ══
-function renderResumo() {
-  const total = dadosPCP.length;
-  const acima = dadosPCP.filter(o => o.ef >= 88).length;
-  const totalPcs = dadosPCP.reduce((s, o) => s + o.qtd, 0);
-  document.getElementById('resumo').innerHTML = `
-    <div class="resumo-card"><div class="valor">${total}</div><div class="label">OPs Ativas</div></div>
-    <div class="resumo-card"><div class="valor">${acima}</div><div class="label">Ef. Alta</div></div>
-    <div class="resumo-card"><div class="valor">${totalPcs}</div><div class="label">Total Peças</div></div>
-  `;
-}
-
-// ══ Lista ══
 function getDados() {
+  const ini = parseInt(document.getElementById('sem-ini').value) || 1;
+  const fin = parseInt(document.getElementById('sem-fin').value) || 52;
   return dadosPCP.filter(op => {
-    const txt = (op.comando + op.produto + op.tecido + op.cor + op.linha).toLowerCase();
-    const okBusca = !busca || txt.includes(busca.toLowerCase());
-    let okFiltro = true;
-    if (filtroAtivo === 'alta')     okFiltro = op.ef >= 88;
-    if (filtroAtivo === 'baixa')    okFiltro = op.ef < 88;
-    if (filtroAtivo === 'feminino') okFiltro = op.linha === 'FEMININO';
-    if (filtroAtivo === 'masculino')okFiltro = op.linha === 'MASCULINO';
-    return okBusca && okFiltro;
+    const inRange = op.semana >= ini && op.semana <= fin;
+    const txt = (op.comando + op.produto + op.cor + op.desc + op.tecido).toLowerCase();
+    return inRange && (!busca || txt.includes(busca.toLowerCase()));
   });
 }
 
-function renderLista() {
-  const ops = getDados();
-  const corpo = document.getElementById('lista-corpo');
-  if (!ops.length) {
-    corpo.innerHTML = `
-      <div class="empty-state">
-        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-        <p>Nenhuma OP encontrada</p>
-      </div>`;
-    return;
-  }
-  corpo.innerHTML = ops.map(op => {
-    const p = pct(op.baixado, op.qtd);
-    const ec = efClasse(op.ef);
-    return `
-    <div class="op-card" onclick="ver('${op.comando}')">
-      <div class="op-card-ef ${ec}">${op.ef}%</div>
-      <div class="op-card-info">
-        <div class="op-card-cmd">${op.comando}</div>
-        <div class="op-card-prod">${op.produto}</div>
-        <div class="op-card-meta">
-          <span class="tag">${op.tecido}</span>
-          <span class="tag">${op.linha}</span>
-          <span class="tag ${p === 100 ? 'green' : 'orange'}">${p}% baixado</span>
+function renderSemana() {
+  const ini = parseInt(document.getElementById('sem-ini').value) || 12;
+  const ops  = getDados();
+  const totalQtd  = ops.reduce((s,o) => s + o.qtd, 0);
+  const totalBaix = ops.reduce((s,o) => s + o.baixado, 0);
+  const totalSald = totalQtd - totalBaix;
+
+  const card = document.getElementById('semana-card');
+  card.innerHTML = `
+    <div class="semana-header">
+      <div class="semana-header-left">
+        <span class="semana-titulo">Semana ${ini}</span>
+        <span class="badge-comandos">${ops.length} comandos</span>
+      </div>
+      <div class="semana-stats">
+        <div class="stat-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+          Qtd: ${totalQtd.toLocaleString('pt-BR')}
         </div>
-        <div class="progress-wrap">
-          <div class="progress-bar" style="width:${p}%; background:${p===100?'var(--success)':'var(--accent)'}"></div>
+        <div class="stat-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          Baixado: ${totalBaix.toLocaleString('pt-BR')}
+        </div>
+        <div class="stat-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Saldo: ${totalSald.toLocaleString('pt-BR')}
         </div>
       </div>
-      <div class="op-card-right">
-        <div class="op-card-qtd">${op.qtd}</div>
-        <div class="op-card-pcs">peças</div>
-      </div>
-    </div>`;
-  }).join('');
+    </div>
+
+    <div class="busca-wrap">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="busca-input" type="text" placeholder="Buscar comando, produto, cor..." value="${busca}" oninput="setBusca(this.value)" />
+    </div>
+
+    <div class="table-wrap">
+      ${ops.length === 0
+        ? `<div class="empty">
+             <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+             <p>Nenhuma OP encontrada</p>
+           </div>`
+        : `<table>
+             <thead>
+               <tr>
+                 <th>Comando</th>
+                 <th>Produto</th>
+                 <th>Cor</th>
+                 <th>Descrição</th>
+                 <th class="num">Quantidade</th>
+                 <th class="num">Baixado</th>
+                 <th class="num">Saldo</th>
+               </tr>
+             </thead>
+             <tbody>
+               ${ops.map(op => {
+                 const saldo = op.qtd - op.baixado;
+                 const p     = pct(op.baixado, op.qtd);
+                 const bCls  = p === 100 ? 'td-baixado-ok' : p >= 60 ? 'td-baixado-med' : 'td-baixado-low';
+                 const sCls  = saldo === 0 ? 'td-saldo-zero' : 'td-saldo-pend';
+                 return `
+                 <tr onclick="abrirModal('${op.comando}')">
+                   <td class="td-comando">${op.comando}</td>
+                   <td class="td-produto">${op.produto}</td>
+                   <td class="td-cor">${op.cor}</td>
+                   <td class="td-desc">${op.desc}</td>
+                   <td class="num">${op.qtd}</td>
+                   <td class="num ${bCls}">${op.baixado} (${p},0%)</td>
+                   <td class="num ${sCls}">${saldo}</td>
+                 </tr>`;
+               }).join('')}
+             </tbody>
+           </table>`
+      }
+    </div>
+  `;
 }
 
-// ══ Detalhe ══
-function ver(id) {
-  const op = dadosPCP.find(i => i.comando === id);
-  const p = pct(op.baixado, op.qtd);
-  const ec = efClasse(op.ef);
+function recarregar() { busca = ''; renderSemana(); }
+function setBusca(v)  { busca = v; renderSemana(); }
 
-  document.getElementById('det-comando').textContent = op.comando;
-  document.getElementById('det-produto').textContent  = op.produto;
-  document.getElementById('det-tecido').textContent   = op.tecido;
-  document.getElementById('det-cor').textContent      = op.cor;
-  document.getElementById('det-destino').textContent  = op.destino;
-  document.getElementById('det-linha').textContent    = op.linha;
-  document.getElementById('det-qtd').textContent      = op.qtd + ' pcs';
-  document.getElementById('det-baixada').textContent  = op.baixado + ' pcs';
-  document.getElementById('det-saldo').textContent    = (op.qtd - op.baixado) + ' pcs';
-  document.getElementById('det-previsao').textContent = op.previsao;
-  document.getElementById('det-baixado-pct').textContent = p + '%';
-  document.getElementById('det-prog-bar').style.width = p + '%';
-  document.getElementById('det-prog-sub-left').textContent  = op.baixado + ' peças produzidas';
-  document.getElementById('det-prog-sub-right').textContent = op.qtd + ' total';
+// ── Modal ──
+function abrirModal(id) {
+  const op    = dadosPCP.find(o => o.comando === id);
+  const saldo = op.qtd - op.baixado;
+  const p     = pct(op.baixado, op.qtd);
+  const ec    = efClasse(op.ef);
 
-  const efEl = document.getElementById('det-ef-circulo');
-  efEl.textContent  = op.ef + '%';
-  efEl.className    = 'ef-circulo ' + ec;
-  document.getElementById('det-ef-status').textContent = efTexto(op.ef);
-  document.getElementById('det-ef-status').style.color =
-    op.ef >= 88 ? 'var(--success)' : op.ef >= 80 ? 'var(--warning)' : 'var(--danger)';
-  document.getElementById('det-ef-meta').textContent = 'Meta: 88% | Real: ' + op.ef + '%';
+  document.getElementById('m-cmd').textContent    = op.comando;
+  document.getElementById('m-prod').textContent   = op.produto;
+  document.getElementById('m-tecido').textContent = op.tecido;
+  document.getElementById('m-cor').textContent    = op.cor;
+  document.getElementById('m-desc').textContent   = op.desc;
+  document.getElementById('m-linha').textContent  = op.linha;
+  document.getElementById('m-qtd').textContent    = op.qtd + ' pcs';
+  document.getElementById('m-baixado').textContent = op.baixado + ' pcs';
+  document.getElementById('m-saldo').textContent  = saldo + ' pcs';
+  document.getElementById('m-prog-pct').textContent = p + '%';
+  document.getElementById('m-prog-bar').style.width = p + '%';
+  document.getElementById('m-prog-left').textContent  = op.baixado + ' peças produzidas';
+  document.getElementById('m-prog-right').textContent = op.qtd + ' total';
 
-  // Grade
-  const gradeEl = document.getElementById('det-grade');
-  gradeEl.innerHTML = Object.entries(op.grade).map(([tam, qtd]) => `
-    <div class="grade-item ${qtd === 0 ? 'zero' : ''}">
-      <div class="tam">Tam ${tam}</div>
-      <div class="qtd">${qtd}</div>
-    </div>`).join('');
+  const efEl = document.getElementById('m-ef-circle');
+  efEl.textContent = op.ef + '%';
+  efEl.className   = 'ef-circle ' + ec;
+  document.getElementById('m-ef-status').textContent = efTexto(op.ef);
+  document.getElementById('m-ef-status').style.color =
+    op.ef >= 88 ? 'var(--success)' : op.ef >= 80 ? '#d97706' : '#dc2626';
+  document.getElementById('m-ef-sub').textContent = `Meta: 88% | Real: ${op.ef}%`;
 
-  // Obs
-  document.getElementById('det-obs').innerHTML = op.obs.map(o => `
-    <div class="obs-item">
-      <span class="obs-data">${o.data}</span>
-      <span>${o.texto}</span>
-    </div>`).join('');
+  document.getElementById('m-grade').innerHTML = Object.entries(op.grade).map(([t,q]) =>
+    `<div class="grade-item ${q===0?'zero':''}">
+       <div class="g-tam">Tam ${t}</div>
+       <div class="g-qtd">${q}</div>
+     </div>`).join('');
 
-  document.getElementById('tela-detalhe').style.display = 'block';
-  document.getElementById('tela-detalhe').scrollTop = 0;
+  document.getElementById('m-obs').innerHTML = op.obs.map(o =>
+    `<div class="obs-item">
+       <span class="obs-data">${o.data}</span>
+       <span>${o.txt}</span>
+     </div>`).join('');
+
+  document.getElementById('modal-overlay').classList.add('open');
 }
 
-function fecharDetalhe() {
-  document.getElementById('tela-detalhe').style.display = 'none';
+function fecharModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
 }
 
-// ══ Filtros ══
-function setFiltro(el) {
-  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  filtroAtivo = el.dataset.filtro;
-  renderLista();
+function fecharModalOverlay(e) {
+  if (e.target === document.getElementById('modal-overlay')) fecharModal();
 }
 
-function filtrar() {
-  busca = document.getElementById('input-busca').value;
-  renderLista();
-}
-
-// ══ Init ══
-renderResumo();
-renderLista();
+// ── Init ──
+renderSemana();
 </script>
 </body>
 </html>
